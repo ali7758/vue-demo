@@ -1,0 +1,280 @@
+<template>
+<div class="home_cont">
+	<slider></slider>
+	<div class="aui-recommend">
+		<img src="../assets/img/bg/icon-tj1.jpg" alt="">
+	</div>
+	<section class="aui-list-product">
+		<div class="aui-list-product-box">
+			<router-link 
+				v-for="(item) of home"
+				:key="item.id"
+				class="aui-list-product-item"
+				:to="'/detail/'+item.id+'?dataname='+'home'"	
+			>
+				<a href="javascript:;" >
+				<div class="aui-list-product-item-img">
+					<img :src="item.pic">
+				</div>
+				<div class="aui-list-product-item-text">
+					<h3>{{item.tit}}</h3>
+					<div class="aui-list-product-mes-box">
+						<div>
+								<span class="aui-list-product-item-price">
+									<em>¥</em>
+									{{item.a_price}}
+								</span>
+							<span class="aui-list-product-item-del-price">
+									¥{{item.b_price}}
+								</span>
+						</div>
+						<div class="aui-comment">986评论</div>
+					</div>
+				</div>
+			</a>
+			</router-link>	
+		</div>
+	</section>
+</div>
+</template>
+<script>
+import slider from './banner';
+import types from '../store/types';
+import {mapGetters} from 'vuex';
+
+export default {
+	components:{
+		slider
+	},
+	computed:mapGetters([
+    'home'
+  ]),
+
+	created(){
+		this.$store.dispatch(types.VIEW_HOME)
+	}
+}
+</script>
+
+<style>
+.home_cont{
+	margin:44px 0 51px
+}
+
+html {
+	font-family: sans-serif;
+	-webkit-text-size-adjust: 100%
+}
+body {
+	font-size:12px;
+	margin: 0
+}
+.aui-recommend {
+	width: 100%;
+	/*height:60px;*/
+	/*line-height:60px;*/
+	background:#e7e5e5;
+	text-align: center;
+	font-size: 16px;
+}
+.aui-recommend img {
+	width: 100%;
+	height: 100%;
+	display: block;
+	border: none;
+}
+.aui-list-product {
+	width: 100%;
+	height: auto;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+	overflow-y: auto;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
+	position: relative;
+	margin-bottom: -1px;
+}
+.aui-list-product-box {
+	overflow: hidden;
+	position: relative;
+	display: block;
+	margin: 0;
+	padding: 0 2px 0;
+	background: #fff;
+}
+.aui-list-product-item {
+	width: 48%;
+	float: left;
+	padding: 0 2px;
+	margin-top: 4px;
+	position: relative;
+}
+.aui-list-product-item-img {
+	height: auto;
+	width: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
+}
+.aui-list-product-item-img img {
+	width: 100%;
+	height: 100%;
+	display: block;
+	border: none;
+}
+.aui-list-product-item-text {
+	background-color: #FFF;
+}
+.aui-list-product-item-text h3 {
+	color: #505050;
+	font-size: 12px;
+	font-weight: normal;
+	word-wrap: normal;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	text-align: justify;
+	display: -webkit-box;
+	line-height: 20px;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+.aui-list-product-mes-box {
+	overflow: hidden;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: end;
+	-webkit-align-items: flex-end;
+	-ms-flex-align: end;
+	align-items: flex-end;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	color: #999;
+}
+.aui-list-product-item-price {
+	font-size: 16px;
+	color: #EB5211;
+}
+.aui-list-product-item-price em {
+	font-size: 14px;
+}
+.aui-list-product-item-del-price {
+	padding-left: .06rem;
+	font-size: 12px;
+	margin-left: .02rem;
+	position: relative;
+	color: #8C8C8C;
+}
+.aui-list-product-item-del-price:after {
+	content: '';
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	border-top: 1px solid #8C8C8C;
+	-webkit-transform: scaleY(0.5);
+	transform: scaleY(0.5);
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
+	top: auto;
+	bottom: 50%;
+}
+.aui-comment {
+	font-size:12px;
+}
+.aui-list-product-box-clear .aui-list-product-item-img {
+	width: auto;
+}
+.aui-list-product-box-clear .aui-list-product-item-text {
+	padding: 0 .2rem;
+}
+.aui-list-product-box-sml .aui-list-product-item {
+	width: 100%;
+}
+/* <!-- 左图 右文本的商品列表 begin --> */
+.aui-list-product-float-item {
+	overflow: hidden;
+	position: relative;
+	padding: 0 7px;
+	background-color: #FFF;
+}
+.aui-list-product-fl-item {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	padding: 7px 0 8px 0;
+	position: relative;
+}
+.aui-list-product-fl-img {
+	height: auto;
+	width: 6rem;
+	overflow: hidden;
+}
+.aui-list-product-fl-img img {
+	width: 100%;
+	height: 100%;
+	display: block;
+	border: none;
+}
+.aui-list-product-fl-text {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+	padding-left: 10px;
+	background-color: #FFF;
+}
+.aui-list-product-fl-text h3 {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	word-break: break-all;
+	text-overflow: ellipsis;
+	line-height: 1rem;
+	max-height: 3rem;
+	color: #505050;
+	font-size: .8rem;
+	text-align: justify;
+	font-weight: normal;
+	margin-bottom: 10px;
+}
+.aui-list-product-fl-mes {
+	overflow: hidden;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: end;
+	-webkit-align-items: flex-end;
+	-ms-flex-align: end;
+	align-items: flex-end;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	color: #999;
+}
+.aui-list-product-fl-bag span {
+	/* float: left; */
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	margin-right: 5px;
+	margin-top: 5px;
+}
+.aui-list-product-fl-bag span img {
+	width: 100%;
+	height: 100%;
+	display: block;
+	border: none;
+}
+</style>
